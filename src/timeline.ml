@@ -323,7 +323,7 @@ let make ?options id json =
         Unsafe.inject (_JSON##parse (string s))
   in
   let options = match options with None -> undefined | Some o -> def o in
-  let timeline_cs : timeline_cs = Unsafe.variable "TL.Timeline" in
+  let timeline_cs : timeline_cs = Js.Unsafe.pure_js_expr "TL.Timeline" in
   let timeline = new%js timeline_cs (string id) json options in
   export "timeline" timeline
 
